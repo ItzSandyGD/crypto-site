@@ -1,0 +1,82 @@
+/* Общие стили */
+html, body {
+    height: 100%;
+    background-color: #f8f9fa;
+}
+body {
+    display: flex;
+    flex-direction: column;
+}
+main {
+    flex: 1;
+}
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+.hero-video {
+    background: linear-gradient(135deg, #1e2a47, #0b1622);
+    padding: 40px 0;
+    text-align: center;
+}
+.hero-video iframe {
+    max-width: 100%;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+.product-card {
+    transition: transform 0.3s, box-shadow 0.3s;
+    border: none;
+    border-radius: 15px;
+    overflow: hidden;
+}
+.product-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+.img-thumbnail {
+    transition: transform 0.2s, opacity 0.2s;
+    cursor: pointer;
+}
+.img-thumbnail:hover {
+    transform: scale(1.02);
+    opacity: 0.9;
+}
+.card {
+    border-radius: 15px;
+    border: none;
+    transition: all 0.2s;
+}
+.card:hover {
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+footer {
+    background: linear-gradient(90deg, #0a0e1a, #1a1f2e);
+}
+.social-links a {
+    transition: opacity 0.2s;
+}
+.social-links a:hover {
+    opacity: 0.7;
+}
+.modal-content {
+    background-color: #1e2a47;
+    color: white;
+}
+.btn-warning {
+    background-color: #f0b90b;
+    border-color: #f0b90b;
+}
+.btn-warning:hover {
+    background-color: #d9a300;
+}
+@media (max-width: 768px) {
+    .hero-video iframe {
+        width: 100%;
+        height: auto;
+        min-height: 200px;
+    }
+    .navbar-brand {
+        font-size: 1.2rem;
+    }
+}
