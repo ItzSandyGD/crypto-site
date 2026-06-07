@@ -6,23 +6,34 @@
     <title>КриптоИнфо - Bitcoin</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .toast-notify {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #28a745;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            z-index: 9999;
+            font-size: 16px;
+            transition: opacity 0.3s ease;
+        }
+        .toast-notify.info { background-color: #17a2b8; }
+        footer {
+            background: linear-gradient(90deg, #0a0e1a, #1a1f2e);
+            color: white;
+            padding: 30px 0 20px;
+            margin-top: 40px;
+        }
+    </style>
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
         <a class="navbar-brand" href="index.html"><i class="fab fa-bitcoin"></i> КриптоИнфо</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link" href="index.html">Главная</a></li>
-                <li class="nav-item"><a class="nav-link active" href="bitcoin.html">Bitcoin</a></li>
-                <li class="nav-item dropdown">...</li>
-            </ul>
-        </div>
     </div>
 </nav>
 
@@ -31,17 +42,14 @@
         <div class="col-md-8">
             <h1>Bitcoin (BTC) – цифровое золото</h1>
             <img src="img/btc-big.jpg" class="img-fluid my-3" alt="Bitcoin">
-            <p>Bitcoin — это первая децентрализованная криптовалюта, созданная Сатоши Накамото в 2009 году. Она работает на технологии блокчейн, позволяя совершать транзакции без посредников.</p>
+            <p>Bitcoin — первая децентрализованная криптовалюта, созданная Сатоши Накамото в 2009 году. Работает на технологии блокчейн, позволяет совершать транзакции без посредников.</p>
             <h3>Основные характеристики</h3>
             <ul>
                 <li>Максимальное количество монет: 21 000 000 BTC</li>
                 <li>Алгоритм консенсуса: Proof-of-Work (SHA-256)</li>
                 <li>Среднее время блока: 10 минут</li>
-                <li>Использование: средство сбережения, инвестиции, переводы</li>
+                <li>Использование: средство сбережения, инвестиции</li>
             </ul>
-            <h3>История курса</h3>
-            <p>С момента запуска Bitcoin вырос с $0 до исторических максимумов выше $68 000. График ниже показывает динамику за последние годы.</p>
-            <!-- Можно вставить изображение графика -->
         </div>
         <div class="col-md-4">
             <div class="card">
@@ -49,29 +57,37 @@
                     <h5>Курс BTC сегодня</h5>
                     <p class="display-6">$65,432.10</p>
                     <p>Изменение за 24ч: <span class="text-success">+2.5%</span></p>
-                    <button class="btn btn-warning w-100">Купить Bitcoin</button>
-                </div>
-            </div>
-            <div class="card mt-4">
-                <div class="card-body">
-                    <h5>Полезные ссылки</h5>
-                    <ul>
-                        <li><a href="#">Белый бумаг Bitcoin</a></li>
-                        <li><a href="#">Обзор кошельков</a></li>
-                        <li><a href="#">Как майнить</a></li>
-                    </ul>
+                    <button id="buyBtcBtn" class="btn btn-warning w-100">Купить Bitcoin</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<footer class="bg-dark text-white pt-4 pb-2">
-    <div class="container-fluid text-center">
-        <p>© 2026 КриптоИнфо | Все о криптовалютах</p>
+<footer>
+    <div class="container text-center">
+        <p>© 2026 КриптоИнфо | Все права защищены</p>
     </div>
 </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    function showNotification(message) {
+        const toast = document.createElement('div');
+        toast.className = 'toast-notify info';
+        toast.innerText = message;
+        document.body.appendChild(toast);
+        setTimeout(() => {
+            toast.style.opacity = '0';
+            setTimeout(() => toast.remove(), 300);
+        }, 2000);
+    }
+
+    const buyBtn = document.getElementById('buyBtcBtn');
+    if (buyBtn) {
+        buyBtn.addEventListener('click', function() {
+            showNotification('Вы купили биткоин, Поздравляю');
+        });
+    }
+</script>
 </body>
 </html>
