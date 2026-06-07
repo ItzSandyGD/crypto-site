@@ -3,120 +3,134 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>КриптоИнфо - новости и курсы криптовалют</title>
+    <title>КриптоИнфо - главная</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <!-- Свой стиль -->
-    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Стили для уведомлений */
+        .toast-notify {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #28a745;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            z-index: 9999;
+            font-size: 16px;
+            transition: opacity 0.3s ease;
+        }
+        .toast-notify.info { background-color: #17a2b8; }
+        .toast-notify.error { background-color: #dc3545; }
+        
+        .product-card {
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: none;
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .img-thumbnail {
+            transition: transform 0.2s;
+            cursor: pointer;
+        }
+        .img-thumbnail:hover {
+            transform: scale(1.02);
+        }
+        footer {
+            background: linear-gradient(90deg, #0a0e1a, #1a1f2e);
+            color: white;
+            padding: 30px 0 20px;
+            margin-top: 40px;
+        }
+        .btn-warning {
+            background-color: #f0b90b;
+            border-color: #f0b90b;
+        }
+        .navbar-brand {
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
 
-<!-- НАВИГАЦИОННОЕ МЕНЮ -->
+<!-- Навигация (упрощённая, без лишних кнопок) -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
     <div class="container">
         <a class="navbar-brand" href="index.html">
             <i class="fab fa-bitcoin"></i> КриптоИнфо
         </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link" href="index.html">Главная</a></li>
-                <li class="nav-item"><a class="nav-link" href="bitcoin.html">Bitcoin</a></li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Обучение</a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Что такое блокчейн</a></li>
-                        <li><a class="dropdown-item" href="#">Как купить крипту</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#">Словарь терминов</a></li>
-                    </ul>
-                </li>
-            </ul>
-            <!-- Иконки корзины и входа (можно заменить на что-то другое) -->
-            <div class="d-flex ms-3">
-                <a href="#" class="btn btn-outline-light me-2"><i class="fas fa-chart-line"></i> Курсы</a>
-                <a href="#" class="btn btn-warning"><i class="fas fa-user"></i> Вход</a>
-            </div>
-        </div>
     </div>
 </nav>
 
-<!-- ВИДЕО-БЛОК (вставьте видео о криптовалютах с YouTube) -->
-<section class="hero-video">
-    <div class="container text-center text-white py-5">
-        <h1>Следите за курсами криптовалют</h1>
-        <p>Актуальные новости, аналитика и обучение</p>
-        <!-- Замените ссылку на любое видео про биткоин -->
-        <a href="https://youtu.be/QPOdFedaujY?si=M4FP4IHXDoaNMy6n" target="_blank">Смотреть видео о биткоине</a>
-    </div>
-</section>
-
-<!-- СЕКЦИЯ ТОВАРОВ / КРИПТОВАЛЮТ (карточки с основными монетами) -->
+<!-- Секция популярных криптовалют (три карточки) -->
 <section class="container my-5">
     <h2 class="text-center mb-4">Популярные криптовалюты</h2>
     <div class="row">
-        <!-- Карточка Bitcoin -->
+        <!-- Bitcoin -->
         <div class="col-md-4">
-            <div class="card product-card h-100">
-                <img src="img/btc.png" class="card-img-top" alt="Bitcoin">
+            <div class="card product-card h-100 text-center">
+                <img src="img/btc.png" class="card-img-top mx-auto mt-3" alt="Bitcoin" style="width: 80px;">
                 <div class="card-body">
                     <h5 class="card-title">Bitcoin (BTC)</h5>
-                    <p class="card-text">Первая и самая известная криптовалюта. Цифровое золото.</p>
-                    <span class="badge bg-warning text-dark">Курс: $65,000</span>
-                    <a href="bitcoin.html" class="btn btn-primary mt-3">Подробнее</a>
+                    <p class="card-text">Цифровое золото, первая криптовалюта.</p>
+                    <span class="badge bg-warning text-dark">Курс: ~$65,000</span>
+                    <a href="bitcoin.html" class="btn btn-primary mt-3 d-block" id="btcDetailsBtn">Подробнее</a>
                 </div>
             </div>
         </div>
-        <!-- Карточка Ethereum -->
+        <!-- Ethereum -->
         <div class="col-md-4">
-            <div class="card product-card h-100">
-                <img src="img/eth.png" class="card-img-top" alt="Ethereum">
+            <div class="card product-card h-100 text-center">
+                <img src="img/eth.png" class="card-img-top mx-auto mt-3" alt="Ethereum" style="width: 80px;">
                 <div class="card-body">
                     <h5 class="card-title">Ethereum (ETH)</h5>
-                    <p class="card-text">Платформа для смарт-контрактов и децентрализованных приложений.</p>
-                    <span class="badge bg-warning text-dark">Курс: $3,200</span>
-                    <button class="btn btn-outline-primary mt-3">Подробнее</button>
+                    <p class="card-text">Платформа для смарт-контрактов и DeFi.</p>
+                    <span class="badge bg-warning text-dark">Курс: ~$3,200</span>
+                    <button class="btn btn-outline-primary mt-3 d-block eth-btn">Подробнее</button>
                 </div>
             </div>
         </div>
-        <!-- Карточка Solana -->
+        <!-- Solana -->
         <div class="col-md-4">
-            <div class="card product-card h-100">
-                <img src="img/sol.png" class="card-img-top" alt="Solana">
+            <div class="card product-card h-100 text-center">
+                <img src="img/sol.png" class="card-img-top mx-auto mt-3" alt="Solana" style="width: 80px;">
                 <div class="card-body">
                     <h5 class="card-title">Solana (SOL)</h5>
-                    <p class="card-text">Высокопроизводительный блокчейн для DeFi и NFT.</p>
-                    <span class="badge bg-warning text-dark">Курс: $150</span>
-                    <button class="btn btn-outline-primary mt-3">Подробнее</button>
+                    <p class="card-text">Высокопроизводительный блокчейн.</p>
+                    <span class="badge bg-warning text-dark">Курс: ~$150</span>
+                    <button class="btn btn-outline-primary mt-3 d-block sol-btn">Подробнее</button>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- ГАЛЕРЕЯ (скриншоты графиков или изображения бирж) -->
+<!-- Галерея графиков (используем ваши изображения chart1, chart2, chart3) -->
 <section class="container my-5">
-    <h2 class="text-center mb-4">Галерея графиков</h2>
+    <h2 class="text-center mb-4">Графики курсов</h2>
     <div class="row g-3">
         <div class="col-md-4 col-6">
-            <img src="img/chart1.jpg" class="img-thumbnail" data-bs-toggle="modal" data-bs-target="#galleryModal" data-bs-img="img/chart1.jpg" alt="График BTC">
+            <img src="img/chart1.jpg" class="img-fluid img-thumbnail" alt="График BTC" id="chart1">
         </div>
         <div class="col-md-4 col-6">
-            <img src="img/chart2.jpg" class="img-thumbnail" data-bs-toggle="modal" data-bs-target="#galleryModal" data-bs-img="img/chart2.jpg" alt="График ETH">
+            <img src="img/chart2.jpg" class="img-fluid img-thumbnail" alt="График ETH" id="chart2">
         </div>
         <div class="col-md-4 col-6">
-            <img src="img/chart3.jpg" class="img-thumbnail" data-bs-toggle="modal" data-bs-target="#galleryModal" data-bs-img="img/chart3.jpg" alt="График SOL">
+            <img src="img/chart3.jpg" class="img-fluid img-thumbnail" alt="График SOL" id="chart3">
         </div>
     </div>
 </section>
 
-<!-- ФОРМА ОБРАТНОЙ СВЯЗИ -->
+<!-- Форма подписки -->
 <section class="container my-5">
-    <h2 class="text-center mb-4">Подписка на новости</h2>
+    <h2 class="text-center mb-4">Подпишитесь на новости</h2>
     <div class="row justify-content-center">
         <div class="col-md-6">
             <form id="subscribeForm">
@@ -128,127 +142,101 @@
                     <label for="email" class="form-label">Email</label>
                     <input type="email" class="form-control" id="email" required>
                 </div>
-                <div class="mb-3 form-check">
-                    <input type="checkbox" class="form-check-input" id="agree">
-                    <label class="form-check-label">Согласен на обработку данных</label>
-                </div>
-                <button type="submit" class="btn btn-primary">Подписаться</button>
+                <button type="submit" class="btn btn-success w-100">Подписаться</button>
             </form>
         </div>
     </div>
 </section>
 
-<!-- ОТЗЫВЫ (можно написать отзывы о сайте) -->
-<section id="reviews" class="container my-5">
-    <h2 class="text-center mb-4">Что говорят трейдеры</h2>
-    <div class="row">
-        <div class="col-md-6 mb-3">
-            <div class="card h-100">
-                <div class="card-body">
-                    <i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i>
-                    <p class="card-text mt-2">"Очень удобный сайт, всегда актуальные курсы и новости!"</p>
-                    <footer class="blockquote-footer">Алексей, трейдер</footer>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6 mb-3">
-            <div class="card h-100">
-                <div class="card-body">
-                    <i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i>
-                    <p class="card-text mt-2">"Лучший ресурс для начинающих! Спасибо за статьи."</p>
-                    <footer class="blockquote-footer">Мария, инвестор</footer>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ПОДВАЛ (ФУТЕР) -->
-<footer class="bg-dark text-white pt-4 pb-2">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-4">
-                <h5>Контакты</h5>
-                <p><i class="fas fa-map-marker-alt"></i> Москва, ул. Криптовая, 1</p>
-                <p><i class="fas fa-phone"></i> +7 (999) 123-45-67</p>
-                <p><i class="fas fa-envelope"></i> info@cryptoinfo.ru</p>
-            </div>
-            <div class="col-md-4">
-                <h5>Мы в соцсетях</h5>
-                <div class="social-links">
-                    <a href="#" class="text-white me-3"><i class="fab fa-telegram fa-2x"></i></a>
-                    <a href="#" class="text-white me-3"><i class="fab fa-twitter fa-2x"></i></a>
-                    <a href="#" class="text-white"><i class="fab fa-discord fa-2x"></i></a>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <h5>Подписка на рассылку</h5>
-                <div class="input-group">
-                    <input type="email" class="form-control" placeholder="Ваш email">
-                    <button class="btn btn-warning" type="button">Подписаться</button>
-                </div>
-            </div>
-        </div>
-        <div class="text-center mt-3">© 2026 КриптоИнфо. Все права защищены.</div>
+<!-- Подвал (без соцсетей) -->
+<footer>
+    <div class="container text-center">
+        <p>© 2026 КриптоИнфо | Все права защищены</p>
+        <p>Email: info@cryptoinfo.ru | Телефон: +7 (999) 123-45-67</p>
     </div>
 </footer>
 
-<!-- МОДАЛЬНОЕ ОКНО ДЛЯ ГАЛЕРЕИ -->
-<div class="modal fade" id="galleryModal" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">График</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-            </div>
-            <div class="modal-body text-center">
-                <img id="modalImage" src="" class="img-fluid" alt="Full size">
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- МОДАЛЬНОЕ ОКНО ВХОДА (можно оставить как в примере) -->
-<div class="modal fade" id="loginModal" tabindex="-1">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Вход в кабинет</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-            </div>
-            <div class="modal-body">
-                <form>
-                    <div class="mb-3">
-                        <label>Email</label>
-                        <input type="email" class="form-control">
-                    </div>
-                    <div class="mb-3">
-                        <label>Пароль</label>
-                        <input type="password" class="form-control">
-                    </div>
-                    <button type="submit" class="btn btn-primary">Войти</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- ПОДКЛЮЧЕНИЕ JS (Bootstrap и свой скрипт для модального окна) -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Скрипт с уведомлениями и кликабельностью -->
 <script>
-    // Обработка модального окна галереи
-    const galleryModal = document.getElementById('galleryModal');
-    galleryModal.addEventListener('show.bs.modal', function(event) {
-        const img = event.relatedTarget;
-        const imgSrc = img.getAttribute('data-bs-img');
-        const modalImage = galleryModal.querySelector('#modalImage');
-        modalImage.src = imgSrc;
-    });
-    // Простое уведомление о подписке (для демонстрации)
-    document.getElementById('subscribeForm')?.addEventListener('submit', function(e) {
-        e.preventDefault();
-        alert('Спасибо за подписку!');
-        this.reset();
+    // Функция показа уведомления
+    function showNotification(message, type = 'success') {
+        const toast = document.createElement('div');
+        toast.className = 'toast-notify ' + (type === 'error' ? 'error' : (type === 'info' ? 'info' : ''));
+        toast.innerText = message;
+        document.body.appendChild(toast);
+        setTimeout(() => {
+            toast.style.opacity = '0';
+            setTimeout(() => toast.remove(), 300);
+        }, 2000);
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        // 1. Кнопка Bitcoin (ведёт на страницу bitcoin.html) – показываем уведомление и разрешаем переход
+        const btcBtn = document.getElementById('btcDetailsBtn');
+        if (btcBtn) {
+            btcBtn.addEventListener('click', function(e) {
+                showNotification('Переход на страницу Bitcoin', 'info');
+                // разрешаем переход (href сработает)
+            });
+        }
+
+        // 2. Кнопки Ethereum и Solana – просто уведомление
+        const ethBtn = document.querySelector('.eth-btn');
+        if (ethBtn) {
+            ethBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                showNotification('Информация об Ethereum временно недоступна', 'info');
+            });
+        }
+        const solBtn = document.querySelector('.sol-btn');
+        if (solBtn) {
+            solBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                showNotification('Информация о Solana временно недоступна', 'info');
+            });
+        }
+
+        // 3. Галерея графиков – клик по картинке
+        const chart1 = document.getElementById('chart1');
+        if (chart1) {
+            chart1.addEventListener('click', () => showNotification('График Bitcoin (BTC) за последний месяц', 'info'));
+        }
+        const chart2 = document.getElementById('chart2');
+        if (chart2) {
+            chart2.addEventListener('click', () => showNotification('График Ethereum (ETH) за последний месяц', 'info'));
+        }
+        const chart3 = document.getElementById('chart3');
+        if (chart3) {
+            chart3.addEventListener('click', () => showNotification('График Solana (SOL) за последний месяц', 'info'));
+        }
+
+        // 4. Форма подписки
+        const form = document.getElementById('subscribeForm');
+        if (form) {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const nameInput = document.getElementById('name');
+                const name = nameInput.value.trim();
+                if (name === '') {
+                    showNotification('Пожалуйста, введите ваше имя', 'error');
+                    return;
+                }
+                showNotification(`Спасибо, ${name}! Вы подписаны на новости.`, 'success');
+                form.reset();
+            });
+        }
+
+        // 5. Дополнительная обработка любых других кнопок (на случай, если что-то забыли)
+        const allBtns = document.querySelectorAll('.btn');
+        allBtns.forEach(btn => {
+            if (btn.id === 'btcDetailsBtn') return; // уже обработана
+            if (btn.classList.contains('eth-btn') || btn.classList.contains('sol-btn')) return;
+            if (btn.closest('form')) return; // кнопка формы уже обработана
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                showNotification('Функция в разработке', 'info');
+            });
+        });
     });
 </script>
 </body>
